@@ -106,6 +106,7 @@ pkgs.mkShell {
             cbor-diag
             gh
             jq
+            lmdb
             yq-go
         ]
         ++ map pkgs.lib.getDev (with pkgs; [ libblst libsodium-vrf secp256k1 icu ]
