@@ -145,7 +145,8 @@ pkgs.mkShell (rec {
     ] ++ (with pkgs; [
         (pkgs.pkg-config or pkgconfig)
         stdenv.cc.cc.lib ]) ++ (with pkgs.buildPackages; [
-    ])
+      ])
+    ++ pkgs.lib.optional pkgs.stdenv.hostPlatform.isDarwin pkgs.darwin.apple_sdk.frameworks.Security
     ++ pkgs.lib.optional (withHLS && (compiler-not-in (
          pkgs.lib.optional (builtins.compareVersions compiler.version "9.7" >= 0) compiler-nix-name) "Haskell Language Server")) (tool "haskell-language-server")
     ++ pkgs.lib.optional (withHlint && (compiler-not-in (
